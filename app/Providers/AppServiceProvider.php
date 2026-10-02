@@ -9,6 +9,7 @@ use App\Support\Navigation;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +22,16 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $root = rtrim((string) config('app.url'), '/');
+
+        if ($root !== '') {
+            URL::forceRootUrl($root);
+
+            if (str_starts_with($root, 'https://')) {
+                URL::forceScheme('https');
+            }
+        }
+
         Carbon::setLocale(config('app.locale'));
         Paginator::defaultView('components.pagination');
 

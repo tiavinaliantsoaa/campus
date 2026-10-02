@@ -1,0 +1,36 @@
+<?php
+
+return [
+    'accepted' => 'Le champ :attribute doit être accepté.',
+    'after' => 'Le champ :attribute doit être une date postérieure au :date.',
+    'array' => 'Le champ :attribute doit être un tableau.',
+    'before' => 'Le champ :attribute doit être une date antérieure au :date.',
+    'boolean' => 'Le champ :attribute doit être vrai ou faux.',
+    'confirmed' => 'La confirmation du champ :attribute ne correspond pas.',
+    'current_password' => 'Le mot de passe est incorrect.',
+    'date' => 'Le champ :attribute doit être une date valide.',
+    'email' => 'Le champ :attribute doit être une adresse e-mail valide.',
+    'exists' => 'Le champ :attribute sélectionné est invalide.',
+    'file' => 'Le champ :attribute doit être un fichier.',
+    'image' => 'Le champ :attribute doit être une image.',
+    'in' => 'Le champ :attribute sélectionné est invalide.',
+    'integer' => 'Le champ :attribute doit être un entier.',
+    'max' => [
+        'array' => 'Le champ :attribute ne peut pas contenir plus de :max éléments.',
+        'file' => 'Le fichier :attribute ne peut pas dépasser :max kilo-octets.',
+        'numeric' => 'Le champ :attribute ne peut pas être supérieur à :max.',
+        'string' => 'Le champ :attribute ne peut pas dépasser :max caractères.',
+    ],
+    'min' => [
+        'array' => 'Le champ :attribute doit contenir au moins :min éléments.',
+        'file' => 'Le fichier :attribute doit faire au moins :min kilo-octets.',
+        'numeric' => 'Le champ :attribute doit être au moins :min.',
+        'string' => 'Le champ :attribute doit contenir au moins :min caractères.',
+    ],
+    'numeric' => 'Le champ :attribute doit être un nombre.',
+    'required' => 'Le champ :attribute est obligatoire.',
+    'required_if' => 'Le champ :attribute est obligatoire.',
+    'required_with' => 'Le champ :attribute est obligatoire.',
+    'string' => 'Le champ :attribute doit être une chaîne de caractères.',
+    'unique' => 'Cette valeur de :attribute est déjà utilisée.',
+];

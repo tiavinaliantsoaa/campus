@@ -19,13 +19,15 @@ Options -Indexes
     RewriteRule ^copil/(.*)$ /copil/public/$1 [L,QSA]
 
     # Campus Laravel → www/campus/public
-    RewriteRule ^campus/public/ - [L,NC]
-    RewriteRule ^campus/?$ /campus/public/index.php [L,QSA]
-    RewriteRule ^campus/(.*)$ /campus/public/$1 [L,QSA]
+    # END empêche Apache de relancer les règles et de retomber sur le site vitrine.
+    RewriteRule ^campus/public/ - [END,NC]
+    RewriteRule ^campus/?$ /campus/public/index.php [END,QSA,NC]
+    RewriteRule ^campus/(.*)$ /campus/public/$1 [END,QSA,NC]
 
     # Site ESCM principal
     RewriteRule ^escm_website/public/ - [L,NC]
     RewriteRule ^\.well-known/ - [L,NC]
+    RewriteCond %{REQUEST_URI} !^/(campus|copil|communication|gibbon)(/|$) [NC]
     RewriteRule ^(.*)$ /escm_website/public/$1 [L]
 </IfModule>
 

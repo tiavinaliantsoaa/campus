@@ -1,0 +1,41 @@
+Options -Indexes
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Gibbon
+    RewriteRule ^gibbon(/.*)?$ - [L,NC]
+
+    # Communication Laravel → www/communication/public
+    RewriteRule ^communication/public/ - [L,NC]
+    RewriteRule ^communication/?$ /communication/public/index.php [L,QSA]
+    RewriteRule ^communication/(.*)$ /communication/public/$1 [L,QSA]
+
+    # Copil Laravel → www/copil/public
+    RewriteRule ^copil/public/ - [L,NC]
+    RewriteRule ^copil/?$ /copil/public/index.php [L,QSA]
+    RewriteRule ^copil/(.*)$ /copil/public/$1 [L,QSA]
+
+    # Campus Laravel → www/campus/public
+    RewriteRule ^campus/public/ - [L,NC]
+    RewriteRule ^campus/?$ /campus/public/index.php [L,QSA]
+    RewriteRule ^campus/(.*)$ /campus/public/$1 [L,QSA]
+
+    # Site ESCM principal
+    RewriteRule ^escm_website/public/ - [L,NC]
+    RewriteRule ^\.well-known/ - [L,NC]
+    RewriteRule ^(.*)$ /escm_website/public/$1 [L]
+</IfModule>
+
+# Protection des fichiers sensibles
+<FilesMatch "^(\.env|composer\.(json|lock)|artisan|phpunit\.xml|\.git)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

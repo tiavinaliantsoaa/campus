@@ -22,14 +22,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $root = rtrim((string) config('app.url'), '/');
+        $appUrl = (string) config('app.url');
 
-        if ($root !== '') {
-            URL::forceRootUrl($root);
-
-            if (str_starts_with($root, 'https://')) {
-                URL::forceScheme('https');
-            }
+        if ($appUrl !== '') {
+            URL::forceRootUrl($appUrl);
         }
 
         Carbon::setLocale(config('app.locale'));

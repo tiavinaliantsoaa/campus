@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Level;
 use App\Models\Room;
 use App\Models\Subject;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -35,7 +36,26 @@ class CatalogController extends Controller
     public function destroyLevel(Level $level): RedirectResponse
     {
         abort_unless(request()->user()->hasPermission('groups.manage'), 403);
-        $level->delete();
+
+        $groups = $level->groups()->withTrashed()->orderBy('name')->pluck('name');
+
+        if ($groups->isNotEmpty()) {
+            $linkedTo = $groups->count() === 1
+                ? 'au groupe '.$groups->first()
+                : 'aux groupes '.$groups->join(', ');
+
+            return back()->withErrors([
+                'level' => 'Impossible de supprimer le niveau « '.$level->name.' » : il est encore lié '.$linkedTo.'.',
+            ]);
+        }
+
+        try {
+            $level->delete();
+        } catch (QueryException) {
+            return back()->withErrors([
+                'level' => 'Impossible de supprimer le niveau « '.$level->name.' » : il est encore utilisé.',
+            ]);
+        }
 
         return back()->with('status', 'Niveau supprimé.');
     }

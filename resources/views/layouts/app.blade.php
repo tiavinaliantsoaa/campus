@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <dialog data-confirm-dialog class="w-[min(100%,28rem)] rounded-2xl border border-line p-0 backdrop:bg-ink/40">
+    <dialog data-confirm-dialog>
         <form method="POST" class="space-y-5 p-6">
             @csrf
             <input type="hidden" name="_method" value="DELETE" data-confirm-method>

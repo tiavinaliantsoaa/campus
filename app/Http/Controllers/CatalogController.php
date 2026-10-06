@@ -37,7 +37,7 @@ class CatalogController extends Controller
     {
         abort_unless(request()->user()->hasPermission('groups.manage'), 403);
 
-        $groups = $level->groups()->withTrashed()->orderBy('name')->pluck('name');
+        $groups = $level->groups()->orderBy('name')->pluck('name');
 
         if ($groups->isNotEmpty()) {
             $linkedTo = $groups->count() === 1
@@ -48,6 +48,8 @@ class CatalogController extends Controller
                 'level' => 'Impossible de supprimer le niveau « '.$level->name.' » : il est encore lié '.$linkedTo.'.',
             ]);
         }
+
+        $level->groups()->onlyTrashed()->get()->each->forceDelete();
 
         try {
             $level->delete();

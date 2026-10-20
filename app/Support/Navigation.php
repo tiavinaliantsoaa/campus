@@ -22,6 +22,7 @@ class Navigation
             ['label' => 'Classes / Groupes', 'route' => 'groups.index', 'icon' => 'groups', 'active' => 'groups.*|levels.*|subjects.*|rooms.*', 'permission' => 'groups.view', 'badge' => null],
             ['label' => 'Admissions', 'route' => 'applicants.index', 'icon' => 'admissions', 'active' => 'applicants.*', 'permission' => 'admissions.view', 'badge' => null],
             ['label' => 'Notes & résultats', 'route' => 'assessments.index', 'icon' => 'grades', 'active' => 'assessments.*', 'permission' => 'grades.view', 'badge' => null],
+            ['label' => 'Bulletin de notes', 'route' => 'bulletins.index', 'icon' => 'grades', 'active' => 'bulletins.*', 'permission' => 'grades.view', 'badge' => null],
             ['label' => 'Scolarité & paiements', 'route' => 'finance.index', 'icon' => 'wallet', 'active' => 'finance.*', 'permission' => 'finance.view', 'badge' => null],
             ['label' => 'Documents', 'route' => 'documents.index', 'icon' => 'folder', 'active' => 'documents.*', 'permission' => 'documents.view', 'badge' => null],
             ['label' => 'Communication', 'route' => 'announcements.index', 'icon' => 'megaphone', 'active' => 'announcements.*|inquiries.*', 'permission' => 'announcements.view', 'badge' => null],

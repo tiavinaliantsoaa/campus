@@ -6,6 +6,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -116,7 +117,11 @@ Route::middleware('auth')->group(function (): void {
     Route::middleware('permission:grades.view')->group(function (): void {
         Route::get('/notes', [AssessmentController::class, 'index'])->name('assessments.index');
         Route::get('/notes/{assessment}', [AssessmentController::class, 'entry'])->name('assessments.entry');
+        Route::get('/bulletins', [BulletinController::class, 'index'])->name('bulletins.index');
     });
+    Route::post('/bulletins/semestres', [BulletinController::class, 'storeSemester'])
+        ->name('bulletins.semesters.store')
+        ->middleware('permission:academic-years.manage');
     Route::middleware('permission:grades.enter')->group(function (): void {
         Route::post('/notes', [AssessmentController::class, 'store'])->name('assessments.store');
         Route::post('/notes/{assessment}/saisie', [AssessmentController::class, 'save'])->name('assessments.save');
